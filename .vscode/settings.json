@@ -17,6 +17,13 @@
     "editor.defaultFormatter": null,
     "editor.formatOnSave": true
   },
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true,
+    "**/.hg/store/**": true,
+    "**/include/*/**": true,
+  },
   "files.autoSave": "afterDelay",
   "code-runner.executorMap": {
     "javascript": "node",
@@ -75,7 +82,8 @@
     "iostream": "cpp",
     "cmath": "cpp",
     "*.tcc": "cpp",
-    "map": "cpp"
+    "map": "cpp",
+    "ostream": "cpp"
   },
   "files.autoGuessEncoding": true,
   "C_Cpp.errorSquiggles": "disabled"

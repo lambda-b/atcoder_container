@@ -23,6 +23,20 @@
       ],
       "group": "build",
       "detail": "コンパイラ: /usr/bin/g++"
+    },
+    {
+      "type": "shell",
+      "label": "C/C++: AtCoder自動テスト",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "command": "${workspaceFolder}/scripts/cptest.sh",
+      "args": [
+        "${workspaceFolder}",
+        "${fileDirname}",
+        "${fileBasenameNoExtension}"
+      ]
     }
   ]
 }
