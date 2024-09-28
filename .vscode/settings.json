@@ -21,9 +21,9 @@
   "code-runner.executorMap": {
     "javascript": "node",
     "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+    "c": "cd $dir && mkdir -p out && gcc $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
+    "cpp": "cd $dir && mkdir -p out && g++ $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
+    "objective-c": "cd $dir &&  mkdir -p out && gcc -framework Cocoa $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
     "php": "php",
     "python": "python -u",
     "perl": "perl",
@@ -65,10 +65,10 @@
     "sass": "sass --style expanded",
     "scss": "scss --style expanded",
     "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
-    "FortranFreeForm": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran-modern": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran_fixed-form": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-    "fortran": "cd $dir && gfortran $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt"
+    "FortranFreeForm": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
+    "fortran-modern": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
+    "fortran_fixed-form": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
+    "fortran": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt"
   },
   "code-runner.runInTerminal": true,
   "files.associations": {
