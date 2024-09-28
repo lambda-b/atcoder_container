@@ -15,9 +15,9 @@ question=`v=$filename; echo ${v,,}`
 
 echo "$lastdir-$filename will be execution!"
 
-if [ ! -d "$workspace/test/$lastdir/$filename" ]; then
+if [ ! -d "$dirname/test/$filename" ]; then
   # テストデータがない場合は取得
-  oj dl -d test/$lastdir/$filename https://atcoder.jp/contests/$contest/tasks/${contest}_$question
+  oj dl -d $dirname/test/$filename https://atcoder.jp/contests/$contest/tasks/${contest}_$question
 fi
 
 # コンパイルの実行
@@ -25,4 +25,4 @@ mkdir -p $dirname/out
 g++ $dirname/$filename.cpp -o $dirname/out/$filename -std=c++17 -I $workspace/include
 
 # テスト実行
-oj test -c "$exe_script" -d test/$lastdir/$filename
+oj test -c "$exe_script" -d $dirname/test/$filename
