@@ -16,7 +16,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${fileDirname}/out/${fileBasenameNoExtension}",
-      "args": [],
+      "args": ["<", "${workspaceFolder}/debug/problem.txt"],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
       "environment": [],

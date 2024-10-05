@@ -9,7 +9,7 @@ ENV TZ=Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # c++を動かすためのGDBをインストール
-# apt update && aptget install gdb
+RUN apt update && apt install -y gdb
 
 # c++のフォーマッタのインストール
 RUN apt update && apt install -y clang-format
