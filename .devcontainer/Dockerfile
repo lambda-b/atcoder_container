@@ -14,6 +14,11 @@ RUN apt update && apt install -y gdb
 # c++のフォーマッタのインストール
 RUN apt update && apt install -y clang-format
 
+# 自動テストを行うための依存パッケージをインストール
+# この設定の他にpipによるパッケージインストールも必要
+RUN apt update && apt install -y time
+RUN apt update && apt install -y chromium-chromedriver firefox-geckodriver
+
 #日本語化の設定
 RUN apt update && apt install -y language-pack-ja  g++
 RUN update-locale LANG=ja_JP.UTF-8
