@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
   string sab;
   string sac;
   string sbc;
@@ -12,33 +11,27 @@ int main()
   cin >> sac;
   cin >> sbc;
 
-  if (sab == "<" && sac == ">")
-  {
+  if (sab == "<" && sac == ">") {
     cout << "A" << endl;
   }
 
-  if (sab == "<" && sbc == "<")
-  {
+  if (sab == "<" && sbc == "<") {
     cout << "B" << endl;
   }
 
-  if (sab == ">" && sac == "<")
-  {
+  if (sab == ">" && sac == "<") {
     cout << "A" << endl;
   }
 
-  if (sab == ">" && sbc == ">")
-  {
+  if (sab == ">" && sbc == ">") {
     cout << "B" << endl;
   }
 
-  if (sac == "<" && sbc == ">")
-  {
+  if (sac == "<" && sbc == ">") {
     cout << "C" << endl;
   }
 
-  if (sac == ">" && sbc == "<")
-  {
+  if (sac == ">" && sbc == "<") {
     cout << "C" << endl;
   }
   return 0;
