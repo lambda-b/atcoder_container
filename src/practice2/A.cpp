@@ -1,34 +1,25 @@
 #include <atcoder/all>
 #include <iostream>
-#include <set>
 
 using namespace std;
+using namespace atcoder;
 
 int main() {
   int n, q;
   cin >> n >> q;
 
-  vector<set<int>> connect(n);
-
-  for (int i = 0; i < n; i++) {
-    connect[i].insert(i);
-  }
+  // Union-Find
+  dsu uf(n);
 
   for (int i = 0; i < q; i++) {
-    int t, u, v;
-    cin >> t >> u >> v;
-    if (t == 1) {
-      cout << connect[u].count(v) << endl;
+    int type, u, v;
+    cin >> type >> u >> v;
+
+    if (type == 1) {
+      cout << (uf.same(u, v) ? 1 : 0) << endl;
       continue;
     }
 
-    set<int> &bigger =
-        connect[u].size() > connect[v].size() ? connect[u] : connect[v];
-    set<int> &smaller =
-        connect[u].size() > connect[v].size() ? connect[v] : connect[u];
-    for (auto it = smaller.begin(); it != smaller.end(); it++) {
-      connect[*it] = bigger;
-      bigger.insert(*it);
-    }
+    uf.merge(u, v);
   }
 }
