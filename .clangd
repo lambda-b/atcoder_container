@@ -1,3 +1,9 @@
 CompileFlags:
   Add:
     - "--include-directory=include"
+
+InlayHints:
+  Enabled: Yes
+  DeducedTypes: No # auto型の型
+  # ParameterNames: Yes # 関数呼出字のパラメータ名
+  # Designators: No # 配列インデックス

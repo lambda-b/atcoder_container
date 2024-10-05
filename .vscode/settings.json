@@ -7,7 +7,7 @@
     "editor.wordBasedSuggestions": "off",
     "editor.suggest.insertMode": "replace",
     "editor.semanticHighlighting.enabled": true,
-    "editor.defaultFormatter": "ms-vscode.cpptools"
+    "editor.defaultFormatter": "xaver.clang-format"
   },
   //フォーマッターにblackを利用
   "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
@@ -24,6 +24,7 @@
     "**/.hg/store/**": true,
     "**/include/*/**": true,
   },
+  "clang-format.executable": "/usr/bin/clang-format",
   "files.autoSave": "afterDelay",
   "code-runner.executorMap": {
     "javascript": "node",

@@ -40,7 +40,8 @@
         "twxs.cmake",
         "visualstudioexptteam.intellicode-api-usage-examples",
         "visualstudioexptteam.vscodeintellicode",
-        "llvm-vs-code-extensions.vscode-clangd"
+        "llvm-vs-code-extensions.vscode-clangd",
+        "xaver.clang-format"
       ]
     }
   },
