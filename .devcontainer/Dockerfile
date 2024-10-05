@@ -11,11 +11,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # c++を動かすためのGDBをインストール
 # apt update && aptget install gdb
 
-# python自動化ツールの必要依存関係のインストール
-# RUN pip install online-judge-tools
-# RUN pip install setuptools
-# RUN install selenium
-# RUN sudo apt install chromium-chromedriver firefox-geckodriver
+# c++のフォーマッタのインストール
+RUN apt update && apt install -y clang-format
 
 #日本語化の設定
 RUN apt update && apt install -y language-pack-ja  g++
