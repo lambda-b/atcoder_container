@@ -28,13 +28,13 @@ int main() {
       int to = n + j;
       graph.add_edge(from, to, 1, maximum - a[i][j]);
     }
-    graph.add_edge(i, end, n, maximum);
 
     graph.add_edge(start, i, k, 0);
     graph.add_edge(n + i, end, k, 0);
   }
+  graph.add_edge(start, end, numeric_limits<int>::max(), maximum);
 
-  auto pair = graph.flow(start, end);
+  auto pair = graph.flow(start, end, n * k);
   cout << n * k * maximum - pair.second << endl;
 
   vector<string> ans(n);
