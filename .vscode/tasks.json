@@ -13,7 +13,7 @@
         "${fileDirname}/out/${fileBasenameNoExtension}",
         "-I",
         "${workspaceFolder}/include",
-        "-std=c++17"
+        "-std=gnu++17"
       ],
       "options": {
         "cwd": "${fileDirname}"
