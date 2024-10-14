@@ -57,9 +57,9 @@ int main() {
   long n, q;
   cin >> n >> q;
 
-  lazy_segtree<model, model::op, model::e,  //
-               functional, functional::mapping, functional::composition,
-               functional::id>
+  lazy_segtree<model, model::op, model::e,                                //
+               functional, functional::mapping, functional::composition,  //
+               functional::id>                                            //
       tree(n);
 
   for (long i = 0; i < n; i++) {
