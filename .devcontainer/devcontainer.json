@@ -41,7 +41,8 @@
         "visualstudioexptteam.intellicode-api-usage-examples",
         "visualstudioexptteam.vscodeintellicode",
         "llvm-vs-code-extensions.vscode-clangd",
-        "xaver.clang-format"
+        "xaver.clang-format",
+        "shd101wyy.markdown-preview-enhanced"
       ]
     }
   },
