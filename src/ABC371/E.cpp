@@ -27,10 +27,11 @@ int main() {
   ll alpha = 0;
   for (int i = 0; i < n; i++) {
     alpha += i + 1;
-    vector<int> si = s[a[i]];
-    auto it = lower_bound(si.begin(), si.end(), i);
-    if (it - si.begin() > 0) {
-      alpha -= *(it - 1) + 1;
+    vector<int> *si = &s[a[i]];
+    auto it = lower_bound(si->begin(), si->end(), i);
+    if (it != si->begin()) {
+      --it;
+      alpha -= *it + 1;
     }
     summation += alpha;
   }
