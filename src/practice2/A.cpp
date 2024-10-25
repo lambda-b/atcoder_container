@@ -5,6 +5,9 @@
 using namespace std;
 using namespace atcoder;
 
+/**
+ * DSU じゃないパターンで実装
+ */
 int main() {
   int n, q;
   cin >> n >> q;
@@ -33,11 +36,13 @@ int main() {
       continue;
     }
 
-    set<int> *c = s[v];
-    for (auto e : *c) {
+    set<int> &c = *s[v];
+    for (auto e : c) {
       s[u]->insert(e);
       s[e] = s[u];
     }
+
+    free(&c);
   }
 
   return 0;
