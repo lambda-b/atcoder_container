@@ -24,6 +24,12 @@ struct power_of_2 {
   }
 };
 
+/**
+ * サイクル成分ごとに分解して考える
+ *
+ * この群は
+ * a^{n-1} = 1 (mod n) とならないことに注意
+ */
 struct model {
   vector<vector<int>> cycles;
 
