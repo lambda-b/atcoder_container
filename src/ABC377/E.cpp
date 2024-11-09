@@ -1,6 +1,6 @@
 #include <atcoder/all>
 #include <iostream>
-#include <numeric>
+#include <set>
 
 using namespace atcoder;
 using namespace std;
@@ -25,43 +25,57 @@ struct power_of_2 {
 };
 
 struct model {
-  vector<int> perm;
+  vector<vector<int>> cycles;
 
-  model(const vector<int> &perm) : perm(perm) {}
+  int size;
 
-  model operator*(model &other) {
-    int n = this->perm.size();
-    vector<int> perm(n);
-    for (int i = 0; i < n; i++) {
-      perm[i] = this->perm[other.perm[i]];
+  model(vector<int> &p) {
+    size = p.size();
+    set<int> counted;
+    for (int i = 0; i < size; i++) {
+      if (counted.count(p[i]) == 1) {
+        continue;
+      }
+      vector<int> cycle;
+      int a = p[i];
+      do {
+        cycle.push_back(a);
+        counted.insert(a);
+        a = p[a];
+      } while (a != p[i]);
+      cycles.push_back(cycle);
     }
-    return {perm};
   }
 
-  model pow(ll k) {
-    if (k == 0) {
-      vector<int> perm(this->perm.size());
-      iota(perm.begin(), perm.end(), 0);
-      model m(perm);
-      return m;
+  vector<int> loop(int n) {
+    vector<int> p(size);
+    for (vector<int> &c : cycles) {
+      int cs = c.size();
+      int s = n % cs;
+      for (int i = 0; i < cs; i++) {
+        p[c[i]] = c[(i + s) % cs];
+      }
     }
-    model a = this->pow(k / 2);
-    if (k % 2 == 0) {
-      return a * a;
-    }
-    return a * a * (*this);
+    return p;
   }
 
-  int &operator[](int k) { return perm[k]; }
+  vector<int> loop(power_of_2 &pow2) {
+    vector<int> p(size);
+    for (vector<int> &c : cycles) {
+      int cs = c.size();
+      int s = pow2.mod(cs);
+      for (int i = 0; i < cs; i++) {
+        p[c[i]] = c[(i + s) % cs];
+      }
+    }
+    return p;
+  }
 };
 
 int main() {
   int n;
   ll k;
   cin >> n >> k;
-  while (k >= n) {
-    k = k / n + k % n;
-  }
 
   vector<int> p(n);
   for (int i = 0; i < n; i++) {
@@ -71,12 +85,9 @@ int main() {
   }
 
   power_of_2 pow2{k};
-  ll q = pow2.mod(n - 1);
   model mdl(p);
-  model rtn = mdl.pow(q);
 
-  cout << q << endl;
-
+  vector<int> rtn = mdl.loop(pow2);
   for (int i = 0; i < n; i++) {
     if (i != 0) {
       cout << " ";
@@ -84,16 +95,6 @@ int main() {
     cout << rtn[i] + 1;
   }
   cout << endl;
-  cout << endl;
-
-  model a = mdl;
-  for (int i = 0; i < 29; i++) {
-    for (int j = 0; j < n; j++) {
-      cout << a[j] + 1 << " ";
-    }
-    cout << endl;
-    a = a * mdl;
-  }
 
   return 0;
 }
