@@ -1,3 +1,4 @@
+/// https://atcoder.jp/contests/past202104-open/tasks/past202104_b
 #include <bits/stdc++.h>
 
 #include <atcoder/all>
