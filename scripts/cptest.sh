@@ -25,7 +25,12 @@ echo "$lastdir-$filename will be execution!"
 
 if [ ! -d "$dirname/test/$filename" ]; then
   # テストデータがない場合は取得
-  oj dl -d $dirname/test/$filename https://atcoder.jp/contests/$contest/tasks/${contest}_$question
+  url=https://atcoder.jp/contests/$contest/tasks/${contest}_$question
+  if [[ `head $dirname/$filename.cpp -n 1` =~ ^.*(http.*)$ ]]; then
+    # ファイル先頭にURLが定義されているときは使用する
+    url=${BASH_REMATCH[1]}
+  fi
+  oj dl -d $dirname/test/$filename $url
 fi
 
 # コンパイルの実行
