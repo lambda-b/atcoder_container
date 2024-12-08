@@ -13,7 +13,7 @@ if !(type "oj" > /dev/null 2>&1); then
 fi
 
 # 作成コードをコンパイル & 実行スクリプト
-compile_script="g++ $dirname/$filename.cpp -o $dirname/out/$filename -std=c++17 -I $workspace/include"
+compile_script="g++-12 $dirname/$filename.cpp -o $dirname/out/$filename -std=gnu++20 -I $workspace/include"
 exe_script="$dirname/out/$filename"
 
 # コンテストにアクセスするためのデータを成形
@@ -35,7 +35,7 @@ fi
 
 # コンパイルの実行
 mkdir -p $dirname/out
-g++ $dirname/$filename.cpp -o $dirname/out/$filename -std=c++17 -I $workspace/include
+g++-12 $dirname/$filename.cpp -o $dirname/out/$filename -std=gnu++20 -I $workspace/include
 
 # テスト実行
 oj test -c "$exe_script" -d $dirname/test/$filename

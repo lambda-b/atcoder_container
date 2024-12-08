@@ -9,9 +9,9 @@
         "/usr/include/x86_64-linux-gnu/c++/9"
       ],
       "defines": [],
-      "compilerPath": "/usr/bin/gcc",
+      "compilerPath": "/usr/bin/gcc-12",
       "cStandard": "c11",
-      "cppStandard": "c++17",
+      "cppStandard": "gnu++20",
       "intelliSenseMode": "clang-x64"
     }
   ],

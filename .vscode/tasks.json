@@ -2,9 +2,9 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "type": "cppbuild",
+      "type": "shell",
       "label": "C/C++: g++ アクティブなファイルのビルド",
-      "command": "/usr/bin/g++",
+      "command": "/usr/bin/g++-12",
       "args": [
         "-fdiagnostics-color=always",
         "-g3",
@@ -13,7 +13,7 @@
         "${fileDirname}/out/${fileBasenameNoExtension}",
         "-I",
         "${workspaceFolder}/include",
-        "-std=gnu++17"
+        "-std=gnu++20"
       ],
       "options": {
         "cwd": "${fileDirname}"
@@ -22,7 +22,7 @@
         "$gcc"
       ],
       "group": "build",
-      "detail": "コンパイラ: /usr/bin/g++"
+      "detail": "コンパイラ: /usr/bin/g++-12"
     },
     {
       "type": "shell",
