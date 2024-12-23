@@ -90,6 +90,7 @@
   "C_Cpp.errorSquiggles": "disabled",
   "cSpell.words": [
     "atcoder",
+    "coef",
     "modint",
     "pbds",
     "segtree"
