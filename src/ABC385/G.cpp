@@ -71,6 +71,8 @@ class Polynomial {
 /**
  * 挿入DPによる数え上げの問題
  * 形式的冪級数による高速化
+ * 参考:
+ * https://qiita.com/51_24_11_/items/11c48395603670ea98d8
  */
 int main() {
   int n, k;
