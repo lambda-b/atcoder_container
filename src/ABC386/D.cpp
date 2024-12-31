@@ -14,8 +14,16 @@ class Black {
  public:  //
   void register_black(const ll &x, ll &y) {
     auto itx = xmap.lower_bound(x);
-    if (itx == xmap.end() || itx->second < y) {
-      xmap[x] = y;
+    if (itx != xmap.end() && itx->second >= y) {
+      return;
+    }
+    xmap[x] = y;
+    auto start = reverse_iterator(xmap.lower_bound(x));
+    for (auto it = start; it != xmap.rend();) {
+      if (it->second > y) {
+        return;
+      }
+      xmap.erase(it->first);
     }
   }
 
@@ -34,8 +42,16 @@ class White {
  public:  //
   void register_white(const ll &x, ll &y) {
     auto itx = xmap.upper_bound(x);
-    if (itx == xmap.begin() || reverse_iterator(itx)->second > y) {
-      xmap[x] = y;
+    if (itx != xmap.begin() && reverse_iterator(itx)->second <= y) {
+      return;
+    }
+    xmap[x] = y;
+    auto start = xmap.upper_bound(x);
+    for (auto it = start; it != xmap.end();) {
+      if (it->second < y) {
+        return;
+      }
+      xmap.erase(it++);
     }
   }
 
