@@ -1,52 +1,75 @@
 #include <bits/stdc++.h>
 
 #include <atcoder/all>
-#include <limits>
-
-#include "atcoder/segtree.hpp"
 
 using namespace std;
 using namespace atcoder;
 
-using ll = long long;
+using ll = unsigned __int128;
 
-constexpr ll INF = numeric_limits<ll>::max();
+/**
+ * 二分探索
+ * sup{v in ll | g(v) <= x} を返す
+ */
+template <class G>
+ll binary_search(ll x, G g, ll upper_limit) {
+  ll u = upper_limit;
+  ll b = 0;
+  ll v = (u + b) / 2;
 
-ll e() { return INF; }
-
-ll op(ll a, ll b) { return min(a, b); }
+  while (true) {
+    if (g(v) > x) {
+      u = v;
+      v = (u + b) / 2;
+      continue;
+    }
+    if (g(v + 1) <= x) {
+      b = v;
+      v = (u + b) / 2;
+      continue;
+    }
+    return v;
+  }
+}
 
 int main() {
   int n;
   cin >> n;
 
-  ll m;
-  cin >> m;
+  long long m_value;
+  cin >> m_value;
+  ll m = (ll)m_value;
 
   vector<ll> p(n);
   for (int i = 0; i < n; i++) {
-    cin >> p[i];
+    long long price;
+    cin >> price;
+    p[i] = (ll)price;
   }
 
-  segtree<ll, op, e> tree(n);
-  for (int i = 0; i < n; i++) {
-    tree.set(i, p[i]);
+  ll v = binary_search(
+      m,
+      [&](const ll &x) {
+        ll s = 0LL;
+        for (ll &price : p) {
+          ll k = ((x / price) + 1LL) / 2LL;
+          s += k * k * price;
+        }
+        return s;
+      },
+      m);
+
+  ll cnt = 0LL;
+  ll s = 0LL;
+  for (ll &price : p) {
+    ll k = ((v / price) + 1LL) / 2LL;
+    s += k * k * price;
+    cnt += k;
   }
 
-  int cnt = 0;
-  while (true) {
-    ll mm = tree.all_prod();
-    if (mm > m) {
-      break;
-    }
-    m -= mm;
-    cnt += 1;
-
-    int idx = tree.max_right(0, [mm](ll x) { return x > mm; });
-    tree.set(idx, mm + 2LL * p[idx]);
-  }
-
-  cout << cnt << endl;
+  cnt += (m - s) / (v + 1);
+  long long ans = (long long)cnt;
+  cout << ans << endl;
 
   return 0;
 }
