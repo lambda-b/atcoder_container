@@ -5,7 +5,7 @@
 using namespace std;
 using namespace atcoder;
 
-using ll = long long;
+using ll = __int128;
 
 ll sqrt_ll(ll x) {
   assert(x >= 0);
@@ -24,15 +24,10 @@ ll sqrt_ll(ll x) {
   return f;
 }
 
-/**
- * なぜか解けない。テストケースは通るけど、、、
- * 答え公開されたら確認しよう。
- */
 int main() {
-  ll r;
-  cin >> r;
-
-  ll dsr = 2LL * r * r;
+  long long r_value;
+  cin >> r_value;
+  ll r = (ll)r_value;
 
   ll cnt = 4LL * (r - 1) + 1;
   for (int i = 1; i < r; i++) {
@@ -42,7 +37,8 @@ int main() {
     cnt += 4LL * y;
   }
 
-  cout << cnt << endl;
+  long long ans = (long long)cnt;
+  cout << ans << endl;
 
   return 0;
 }
