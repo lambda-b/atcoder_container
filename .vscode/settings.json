@@ -100,5 +100,6 @@
     "**/.devcontainer/**",
     "**/.vscode/**",
     "**/include/**"
-  ]
+  ],
+  "workbench.colorTheme": "Default Dark Modern"
 }
