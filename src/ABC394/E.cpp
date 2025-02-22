@@ -1,39 +1,59 @@
 #include <bits/stdc++.h>
 
 #include <atcoder/all>
+#include <cmath>
+#include <limits>
 
 using namespace std;
 using namespace atcoder;
 
-struct model {
-  string path;
-  int node;
+constexpr int INF = numeric_limits<int>::max();
+
+// 辺の情報
+struct Edge {
+  // 行先
+  int to;
+
+  // コスト
+  int cost;
 };
 
-list<pair<int, int>> ff(int i, int j, vector<string> &c) {
-  int n = (int)c.size();
+using Graph = std::vector<std::vector<Edge>>;
 
-  map<char, vector<int>> m;
-  for (int k = 0; k < n; k++) {
-    char &ch = c[i][k];
-    if (ch == '-') {
+// { distance, from }
+using Pair = std::pair<long long, int>;
+
+// ダイクストラ法 (1.1 基本実装)
+// distances は頂点数と同じサイズ, 全要素 INF で初期化しておく
+void dijkstra(const Graph& graph, std::vector<long long>& distances,
+              int startIndex) {
+  // 「現時点での最短距離, 頂点」の順に取り出す priority_queue
+  // デフォルトの priority_queue は降順に取り出すため std::greater を使う
+  std::priority_queue<Pair, std::vector<Pair>, std::greater<Pair>> q;
+  q.emplace((distances[startIndex] = 0), startIndex);
+
+  while (!q.empty()) {
+    const long long distance = q.top().first;
+    const int from = q.top().second;
+    q.pop();
+
+    // 最短距離でなければ処理しない
+    if (distances[from] < distance) {
       continue;
     }
-    m[ch].push_back(k);
-  }
-  list<pair<int, int>> s;
-  for (int k = 0; k < n; k++) {
-    char &ch = c[k][j];
-    if (ch == '-') {
-      continue;
-    }
-    auto &t = m[ch];
-    for (auto l : t) {
-      s.push_back({l, k});
-    }
-  }
 
-  return s;
+    // 現在の頂点からの各辺について
+    auto& edges = graph[from];
+    for (auto e = edges.begin(); e != edges.end(); e++) {
+      // to までの新しい距離
+      const long long d = (distances[from] + e->cost);
+
+      // d が現在の記録より小さければ更新
+      if (d < distances[e->to]) {
+        q.emplace((distances[e->to] = d), e->to);
+      }
+    }
+  }
 }
 
 int main() {
@@ -44,65 +64,44 @@ int main() {
     cin >> c[i];
   }
 
-  vector<vector<int>> a(n, vector<int>(n, -1));
+  int m = n * n;
+  Graph graph(m + 1);
   for (int i = 0; i < n; i++) {
-    a[i][i] = 0;
+    graph[m].push_back({i * n + i, 0});
   }
-  list<pair<int, int>> left;
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      if (c[i][j] != '-' && a[i][j] == -1) {
-        a[i][j] = 1;
-      }
-      if (a[i][j] == -1) {
-        left.push_back({i, j});
-      }
-    }
-  }
-
-  vector<vector<int>> called(n, vector<int>(n, 0));
-
-  vector<vector<list<pair<int, int>>>> ss(n, vector<list<pair<int, int>>>(n));
-  for (auto p : left) {
-    ss[p.first][p.second] = ff(p.first, p.second, c);
-  }
-
-  for (int i = 0; i < n; i++) {
-    for (auto it = left.begin(); it != left.end();) {
-      auto &tt = ss[it->first][it->second];
-      bool flag = false;
-      for (auto &p : tt) {
-        int &v = a[p.first][p.second];
-        if (v != -1) {
-          int &u = a[it->first][it->second];
-          if (u == -1) {
-            u = v + 2;
-          } else {
-            u = min(u, v + 2);
-          }
-          flag = true;
-        }
-      }
-      if (flag) {
-        called[it->first][it->second] += 1;
-      }
-      // とりあえず二回より呼ばれた場合は除外していく
-      if (called[it->first][it->second] > 2) {
-        left.erase(it++);
-      } else {
-        it++;
-      }
-    }
-  }
-
+  map<char, vector<pair<int, int>>> mp;
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
-      if (j != 0) {
-        cout << " ";
+      if (c[i][j] != '-') {
+        graph[m].push_back({i * n + j, 1});
+        mp[c[i][j]].push_back({i, j});
       }
-      cout << a[i][j];
     }
-    cout << endl;
+  }
+
+  for (auto& e : mp) {
+    for (auto& p : e.second) {
+      for (auto& q : e.second) {
+        int u = p.second * n + q.first;
+        int v = p.first * n + q.second;
+        graph[u].push_back({v, 2});
+      }
+    }
+  }
+
+  vector<long long> distances(m + 1, INF);
+  dijkstra(graph, distances, m);
+  for (int i = 0; i < m; i++) {
+    if (distances[i] == INF) {
+      cout << -1;
+    } else {
+      cout << distances[i];
+    }
+    if ((i + 1) % n == 0) {
+      cout << endl;
+    } else {
+      cout << " ";
+    }
   }
 
   return 0;
