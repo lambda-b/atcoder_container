@@ -93,6 +93,7 @@
     "coef",
     "fenwick",
     "modint",
+    "multiprecision",
     "pbds",
     "segtree"
   ],
