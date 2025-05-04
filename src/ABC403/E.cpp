@@ -18,11 +18,18 @@ int main() {
     if (t == 1) {
       string s;
       cin >> s;
-      x.insert(s);
+      auto xit = x.lower_bound(s);
+      auto rit = reverse_iterator(xit);
+      if (rit == x.rend() || s.substr(0, (int)rit->size()) != *rit) {
+        while (xit != x.end() && xit->substr(0, (int)s.size()) == s) {
+          x.erase(xit++);
+        }
+        x.insert(s);
+      }
 
-      auto it = y.lower_bound(s);
-      while (it != y.end() && it->substr(0, (int)s.size()) == s) {
-        y.erase(it++);
+      auto yit = y.lower_bound(s);
+      while (yit != y.end() && yit->substr(0, (int)s.size()) == s) {
+        y.erase(yit++);
       }
     }
 
