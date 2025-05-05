@@ -22,44 +22,23 @@ int main() {
 
   if (d == 0) {
     int s = 0;
-    for (int i = 1; i <= mx; i++) {
+    for (int i = 0; i <= mx; i++) {
       s += max(0, dp[i] - 1);
     }
     cout << s << endl;
     return 0;
   }
 
-  vector<vector<int>> b;
-  for (int i = 1; i <= d; i++) {
-    vector<int> c;
-    for (int j = i; j <= mx; j += d) {
-      if (dp[j] > 0) {
-        c.push_back(dp[j]);
-      } else {
-        if ((int)c.size() > 0) {
-          b.push_back(c);
-        }
-        c.clear();
-      }
-    }
-    if ((int)c.size() > 0) {
-      b.push_back(c);
-    }
-  }
-
   int s = 0;
-  for (auto &c : b) {
-    int odd = 0;
-    int even = 0;
-    for (int i = 0; i < (int)c.size(); i++) {
-      if (i % 2 == 0) {
-        even += c[i];
-      } else {
-        odd += c[i];
-      }
+  for (int i = 0; i < d; i++) {
+    int p1 = 0;
+    int p2 = 0;
+    for (int j = i + d; j <= mx; j += d) {
+      int tmp = p1;
+      p1 = min(p1 + dp[j], p2 + dp[j - d]);
+      p2 = tmp;
     }
-
-    s += min(odd, even);
+    s += p1;
   }
 
   cout << s << endl;
