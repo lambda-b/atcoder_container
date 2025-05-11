@@ -16,7 +16,7 @@ class Strategy {
   vector<double> p;
   Strategy(int n, int m, vector<int> &s) : n(n), m(m), s(s) {
     p.resize(m + 1, 0);
-    for (int i = 0; i < m; i++) {
+    for (int i = 0; i < min(n, m); i++) {
       p[s[i]] += 1. / n;
     }
     p[0] = 1.;
@@ -85,7 +85,7 @@ int main() {
   int n, t, m, k;
   cin >> n >> t >> m >> k;
 
-  vector<vector<int>> divs = divisions(min(n, m), m);
+  vector<vector<int>> divs = divisions(m, min(n, m));
   vector<Strategy> strategies;
   for (int i = 0; i < (int)divs.size(); i++) {
     strategies.emplace_back(n, m, divs[i]);
