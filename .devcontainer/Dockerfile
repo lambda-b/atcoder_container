@@ -15,6 +15,9 @@ RUN apt update && apt install -y g++-12
 # c++を動かすためのGDBをインストール
 RUN apt update && apt install -y gdb
 
+# c++の言語サーバインストール
+RUN apt update && apt install -y clangd
+
 # c++のフォーマッタのインストール
 RUN apt update && apt install -y clang-format
 
