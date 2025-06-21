@@ -104,5 +104,5 @@
     "**/include/**"
   ],
   "workbench.colorTheme": "Default Dark Modern",
-  "cmake.sourceDirectory": "/workspaces/atcoder/boost/libs/bind"
+  "cmake.ignoreCMakeListsMissing": true,
 }
