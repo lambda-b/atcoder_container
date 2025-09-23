@@ -5,23 +5,14 @@
 using namespace std;
 using namespace atcoder;
 
-struct Group {
-  vector<int> members;
-  set<int> blacks;
-
-  Group(int x) { members.push_back(x); }
-
-  int size() const { return members.size(); }
-};
-
 int main() {
   int n, q;
   cin >> n >> q;
 
-  vector<shared_ptr<Group>> a(n);
-  for (int i = 0; i < n; i++) {
-    a[i] = make_shared<Group>(i);
-  }
+  // boostによるUnion-Find木の実装
+  dsu uf(n);
+  vector<bool> blacks(n);
+  map<int, int> cnt;
 
   for (int i = 0; i < q; i++) {
     int type;
@@ -32,45 +23,37 @@ int main() {
       u--;
       v--;
 
-      if (a[u] == a[v]) {
+      int ul = uf.leader(u);
+      int vl = uf.leader(v);
+      if (ul == vl) {
         continue;
       }
-      if (a[u]->size() < a[v]->size()) {
-        swap(u, v);
-      }
 
-      vector<int> members = a[v]->members;
-      set<int> blacks = a[v]->blacks;
-      for (auto &x : members) {
-        a[x] = a[u];
-        a[u]->members.push_back(x);
-      }
-      for (auto &x : blacks) {
-        a[u]->blacks.insert(x);
-      }
+      int p = cnt[ul];
+      int q = cnt[vl];
+      cnt.erase(ul);
+      cnt.erase(vl);
+
+      uf.merge(u, v);
+      cnt[uf.leader(u)] = p + q;
     }
     if (type == 2) {
       int v;
       cin >> v;
       v--;
 
-      set<int> &blacks = a[v]->blacks;
-      if (blacks.find(v) == blacks.end()) {
-        blacks.insert(v);
-      } else {
-        blacks.erase(v);
-      }
+      cnt[uf.leader(v)] += blacks[v] ? -1 : 1;
+      blacks[v] = !blacks[v];
     }
     if (type == 3) {
       int v;
       cin >> v;
       v--;
 
-      set<int> &blacks = a[v]->blacks;
-      if (blacks.empty()) {
-        cout << "No" << endl;
-      } else {
+      if (cnt[uf.leader(v)] > 0) {
         cout << "Yes" << endl;
+      } else {
+        cout << "No" << endl;
       }
     }
   }
