@@ -20,7 +20,8 @@
         "shardulm94.trailing-spaces",
         "streetsidesoftware.code-spell-checker",
         "llvm-vs-code-extensions.vscode-clangd",
-        "xaver.clang-format"
+        "xaver.clang-format",
+        "openai.chatgpt"
       ]
     }
   },
@@ -29,8 +30,6 @@
   "remoteUser": "vscode",
   // 追加導入する機能の選択
   "features": {
-    "git": "latest",
-    "python": "latest"
-  },
-  "postCreateCommand": "python3 -m pip install --upgrade setuptools online-judge-tools"
+    "git": "latest"
+  }
 }

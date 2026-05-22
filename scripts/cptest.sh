@@ -6,13 +6,6 @@ workspace="$1"
 dirname="$2"
 filename="$3"
 
-# コマンドと distutils 互換パッケージを確認して、必要な場合だけインストール
-if !(type "oj" > /dev/null 2>&1) || ! python3 -c 'import distutils.version' >/dev/null 2>&1; then
-  pip install --upgrade pip
-  pip install setuptools
-  pip install online-judge-tools
-fi
-
 exe_script="$dirname/out/$filename"
 
 # コンテストにアクセスするためのデータを成形

@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc-12 \
     gdb \
     language-pack-ja \
+    python3 \
+    python3-pip \
+    python3-setuptools \
     time \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -38,5 +41,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
     && rm -rf /var/lib/apt/lists/*
 
 RUN npm install -g @openai/codex
+
+RUN python3 -m pip install --no-cache-dir --upgrade pip setuptools online-judge-tools
 
 CMD ["bash"]
