@@ -36,7 +36,8 @@
         "twxs.cmake",
         "llvm-vs-code-extensions.vscode-clangd",
         "xaver.clang-format",
-        "shd101wyy.markdown-preview-enhanced"
+        "shd101wyy.markdown-preview-enhanced",
+        "openai.chatgpt"
       ]
     }
   },

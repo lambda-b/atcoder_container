@@ -35,4 +35,16 @@ ENV LANG="ja_JP.UTF-8" \
     TZ="JST-9" \
     TERM="xterm"
 
+# Node.js のセットアップ (n 経由でインストール) + pnpm
+# nodejs/npm は n を入れるためだけに使い、インストール後に削除する
+RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
+    && npm install -g n \
+    && n 24.13.0 \
+    && apt-get purge -y nodejs npm \
+    && apt-get autoremove -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g @openai/codex
+
 CMD ["bash"]
