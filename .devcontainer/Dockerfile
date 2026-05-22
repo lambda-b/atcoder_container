@@ -1,8 +1,7 @@
 #ここではベースイメージという、構築する環境の基礎となるイメージをDockerHubなどから選び記述します。
 #今回は、Ubuntuイメージを使用します
-ARG VARIANT="hirsute"
-FROM mcr.microsoft.com/vscode/devcontainers/base:${VARIANT}
-
+ARG VARIANT="jammy"
+FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 
 #作成する環境の時間設定を日本時間にしておきます。これにより、ビルドが中断されなくなります。
 ENV TZ=Asia/Tokyo
