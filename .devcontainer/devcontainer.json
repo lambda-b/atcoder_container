@@ -6,17 +6,14 @@
       "VARIANT": "jammy"
     }
   },
-
   // 追加する拡張機能のIDを入力
   "customizations": {
     "vscode": {
       "extensions": [
         //Javaを使うひとはアンコメントして有効化
         //"vscjava.vscode-java-pack",
-
         //Rustを使う人はアンコメントして有効化
         //"Swellaby.rust-pack",
-
         "formulahendry.code-runner",
         "ms-vscode.cpptools-extension-pack",
         "ms-python.python",
@@ -37,22 +34,19 @@
         "shardulm94.trailing-spaces",
         "streetsidesoftware.code-spell-checker",
         "twxs.cmake",
-        "visualstudioexptteam.intellicode-api-usage-examples",
-        "visualstudioexptteam.vscodeintellicode",
         "llvm-vs-code-extensions.vscode-clangd",
         "xaver.clang-format",
         "shd101wyy.markdown-preview-enhanced"
       ]
     }
   },
-
   // コンテナのフォワードポートの設定
-  "forwardPorts": [900],
-
+  "forwardPorts": [
+    900
+  ],
   // この設定をしないと、コンテナのデフォルトユーザーがrootとなり不都合が多いので必須。
   // non-root user などで調べるとより詳しくわかります。
   "remoteUser": "vscode",
-
   // 追加導入する機能の選択
   "features": {
     "docker-from-docker": "latest",
