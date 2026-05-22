@@ -1,3 +1,6 @@
 -std=gnu++20
 -I
 include
+-Wall
+-Wextra
+-DLOCAL

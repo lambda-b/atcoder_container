@@ -7,32 +7,24 @@ FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 ENV TZ=Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# コンパイラのインストール
-RUN apt update && apt install -y gcc-12
-RUN apt update && apt install -y g++-12
+# C++20 / debug / format / test tools
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    clang-format \
+    clangd \
+    g++-12 \
+    gcc-12 \
+    gdb \
+    language-pack-ja \
+    time \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# c++を動かすためのGDBをインストール
-RUN apt update && apt install -y gdb
-
-# c++の言語サーバインストール
-RUN apt update && apt install -y clangd
-
-# c++のフォーマッタのインストール
-RUN apt update && apt install -y clang-format
-
-# 自動テストを行うための依存パッケージをインストール
-# この設定の他にpipによるパッケージインストールも必要
-RUN apt update && apt install -y time
-
-#日本語化の設定
-RUN apt update && apt install -y language-pack-ja  g++
 RUN update-locale LANG=ja_JP.UTF-8
 
 ENV LANG="ja_JP.UTF-8" \
     LANGUAGE="ja_JP:ja" \
     LC_ALL="ja_JP.UTF-8" \
-    LC_ALL="ja_JP.UTF-8" \
-    TZ="JST-9" \
+    TZ="Asia/Tokyo" \
     TERM="xterm"
 
 # Node.js のセットアップ (n 経由でインストール) + pnpm

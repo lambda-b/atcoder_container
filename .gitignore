@@ -3,3 +3,4 @@ test
 debug/problem.txt
 example
 /boost
+*:Zone.Identifier

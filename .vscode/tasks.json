@@ -8,6 +8,9 @@
       "args": [
         "-fdiagnostics-color=always",
         "-g3",
+        "-Wall",
+        "-Wextra",
+        "-DLOCAL",
         "${file}",
         "-o",
         "${fileDirname}/out/${fileBasenameNoExtension}",
@@ -36,6 +39,9 @@
         "${workspaceFolder}",
         "${fileDirname}",
         "${fileBasenameNoExtension}"
+      ],
+      "problemMatcher": [
+        "$gcc"
       ]
     }
   ]

@@ -1,82 +1,22 @@
 {
   "terminal.integrated.defaultProfile.linux": "zsh",
-  "[c]": {
-    "editor.defaultFormatter": "ms-vscode.cpptools"
-  },
   "[cpp]": {
     "editor.wordBasedSuggestions": "off",
     "editor.suggest.insertMode": "replace",
     "editor.semanticHighlighting.enabled": true,
     "editor.defaultFormatter": "xaver.clang-format"
   },
-  //フォーマッターにblackを利用
-  "python.formatting.blackPath": "/usr/local/py-utils/bin/black",
-  "python.formatting.provider": "black",
-  "[python]": {
-    "editor.formatOnPaste": false,
-    "editor.defaultFormatter": null,
-    "editor.formatOnSave": true
-  },
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,
     "**/node_modules/*/**": true,
     "**/.hg/store/**": true,
-    "**/include/*/**": true,
+    "**/include/*/**": true
   },
   "clang-format.executable": "/usr/bin/clang-format",
   "files.autoSave": "afterDelay",
   "code-runner.executorMap": {
-    "javascript": "node",
-    "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
-    "c": "cd $dir && mkdir -p out && gcc $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
-    "cpp": "cd $dir && mkdir -p out && g++ $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
-    "objective-c": "cd $dir &&  mkdir -p out && gcc -framework Cocoa $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
-    "php": "php",
-    "python": "python -u",
-    "perl": "perl",
-    "perl6": "perl6",
-    "ruby": "ruby",
-    "go": "go run",
-    "lua": "lua",
-    "groovy": "groovy",
-    "powershell": "powershell -ExecutionPolicy ByPass -File",
-    "bat": "cmd /c",
-    "shellscript": "bash",
-    "fsharp": "fsi",
-    "csharp": "scriptcs",
-    "vbscript": "cscript //Nologo",
-    "typescript": "ts-node",
-    "coffeescript": "coffee",
-    "scala": "scala",
-    "swift": "swift",
-    "julia": "julia",
-    "crystal": "crystal",
-    "ocaml": "ocaml",
-    "r": "Rscript",
-    "applescript": "osascript",
-    "clojure": "lein exec",
-    "haxe": "haxe --cwd $dirWithoutTrailingSlash --run $fileNameWithoutExt",
-    "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
-    "racket": "racket",
-    "scheme": "csi -script",
-    "ahk": "autohotkey",
-    "autoit": "autoit3",
-    "dart": "dart",
-    "pascal": "cd $dir && fpc $fileName && $dir$fileNameWithoutExt",
-    "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
-    "haskell": "runhaskell",
-    "nim": "nim compile --verbosity:0 --hints:off --run",
-    "lisp": "sbcl --script",
-    "kit": "kitc --run",
-    "v": "v run",
-    "sass": "sass --style expanded",
-    "scss": "scss --style expanded",
-    "less": "cd $dir && lessc $fileName $fileNameWithoutExt.css",
-    "FortranFreeForm": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
-    "fortran-modern": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
-    "fortran_fixed-form": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt",
-    "fortran": "cd $dir && mkdir -p out && gfortran $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt"
+    "cpp": "cd $dir && mkdir -p out && g++-12 -std=gnu++20 -Wall -Wextra -DLOCAL -I $workspaceRoot/include $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt"
   },
   "code-runner.runInTerminal": true,
   "files.associations": {
@@ -102,6 +42,5 @@
     "**/.devcontainer/**",
     "**/.vscode/**",
     "**/include/**"
-  ],
-  "cmake.ignoreCMakeListsMissing": true,
+  ]
 }
