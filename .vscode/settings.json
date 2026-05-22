@@ -103,6 +103,6 @@
     "**/.vscode/**",
     "**/include/**"
   ],
-  "workbench.colorTheme": "Default Dark Modern",
+  "workbench.colorTheme": "Dark Modern",
   "cmake.ignoreCMakeListsMissing": true,
 }
