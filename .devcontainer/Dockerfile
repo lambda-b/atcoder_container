@@ -30,7 +30,7 @@ ENV LANG="ja_JP.UTF-8" \
     TZ="Asia/Tokyo" \
     TERM="xterm"
 
-# Node.js のセットアップ (n 経由でインストール) + pnpm
+# Node.js のセットアップ (n 経由でインストール)
 # nodejs/npm は n を入れるためだけに使い、インストール後に削除する
 RUN apt-get update && apt-get install -y --no-install-recommends nodejs npm \
     && npm install -g n \
