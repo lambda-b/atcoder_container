@@ -1,4 +1,4 @@
--std=gnu++20
+-std=gnu++23
 -I
 include
 -Wall

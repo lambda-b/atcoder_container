@@ -27,7 +27,7 @@ fi
 
 # コンパイルの実行
 mkdir -p "$dirname/out"
-g++-12 "$dirname/$filename.cpp" -o "$dirname/out/$filename" -std=gnu++20 -O2 -Wall -Wextra -DONLINE_JUDGE -DATCODER -I "$workspace/include"
+g++-15 "$dirname/$filename.cpp" -o "$dirname/out/$filename" -std=gnu++23 -O2 -Wall -Wextra -DONLINE_JUDGE -DATCODER -I "$workspace/include"
 
 # テスト実行
 oj test -c "$exe_script" -d "$dirname/test/$filename"

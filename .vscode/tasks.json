@@ -4,7 +4,7 @@
     {
       "type": "shell",
       "label": "C/C++: g++ アクティブなファイルのビルド",
-      "command": "/usr/bin/g++-12",
+      "command": "/usr/bin/g++-15",
       "args": [
         "-fdiagnostics-color=always",
         "-g3",
@@ -16,7 +16,7 @@
         "${fileDirname}/out/${fileBasenameNoExtension}",
         "-I",
         "${workspaceFolder}/include",
-        "-std=gnu++20"
+        "-std=gnu++23"
       ],
       "options": {
         "cwd": "${fileDirname}"
@@ -25,7 +25,7 @@
         "$gcc"
       ],
       "group": "build",
-      "detail": "コンパイラ: /usr/bin/g++-12"
+      "detail": "コンパイラ: /usr/bin/g++-15"
     },
     {
       "type": "shell",

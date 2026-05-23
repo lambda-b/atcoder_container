@@ -13,10 +13,11 @@
     "**/.hg/store/**": true,
     "**/include/*/**": true
   },
-  "clang-format.executable": "/usr/bin/clang-format",
+  "clang-format.executable": "/usr/bin/clang-format-21",
+  "clangd.path": "/usr/bin/clangd-21",
   "files.autoSave": "afterDelay",
   "code-runner.executorMap": {
-    "cpp": "cd $dir && mkdir -p out && g++-12 -std=gnu++20 -Wall -Wextra -DLOCAL -I $workspaceRoot/include $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt"
+    "cpp": "cd $dir && mkdir -p out && g++-15 -std=gnu++23 -Wall -Wextra -DLOCAL -I $workspaceRoot/include $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt"
   },
   "code-runner.runInTerminal": true,
   "files.associations": {

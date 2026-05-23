@@ -7,12 +7,25 @@ FROM mcr.microsoft.com/devcontainers/base:${VARIANT}
 ENV TZ=Asia/Tokyo
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# C++20 / debug / format / test tools
+# C++23 / debug / format / test tools
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    clang-format \
-    clangd \
-    g++-12 \
-    gcc-12 \
+    ca-certificates \
+    curl \
+    gnupg \
+    && curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xC8EC952E2A0E1FBDC5090F6A2C277A0A352154E5" \
+        | gpg --dearmor -o /usr/share/keyrings/ubuntu-toolchain-r-test.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/ubuntu-toolchain-r-test.gpg] https://ppa.launchpadcontent.net/ubuntu-toolchain-r/test/ubuntu jammy main" \
+        > /etc/apt/sources.list.d/ubuntu-toolchain-r-test.list \
+    && curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key \
+        | gpg --dearmor -o /usr/share/keyrings/apt.llvm.org.gpg \
+    && echo "deb [signed-by=/usr/share/keyrings/apt.llvm.org.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-21 main" \
+        > /etc/apt/sources.list.d/apt.llvm.org.list \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+    clang-format-21 \
+    clangd-21 \
+    g++-15 \
+    gcc-15 \
     gdb \
     language-pack-ja \
     python3 \
