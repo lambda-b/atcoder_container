@@ -25,6 +25,12 @@
       ]
     }
   },
+  // Codex の状態はプロジェクト内に保持し、認証情報はホスト側のものを利用する
+  "initializeCommand": ".devcontainer/scripts/initialize.sh",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.codex-local,target=/home/vscode/.codex,type=bind",
+    "source=${localEnv:HOME}/.codex/auth.json,target=/home/vscode/.codex/auth.json,type=bind"
+  ],
   // この設定をしないと、コンテナのデフォルトユーザーがrootとなり不都合が多いので必須。
   // non-root user などで調べるとより詳しくわかります。
   "remoteUser": "vscode",

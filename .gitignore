@@ -4,3 +4,6 @@ debug/problem.txt
 example
 /boost
 *:Zone.Identifier
+
+# Local Codex state and credentials
+/.codex-local/
