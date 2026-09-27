@@ -1,41 +1,37 @@
 {
-  "name": "Ubuntu",
+  "name": "AtCoder Rust",
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
       "VARIANT": "jammy"
     }
   },
-  // 追加する拡張機能のIDを入力
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/rust:1": {
+      "version": "1.89.0",
+      "components": "clippy,rustfmt"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
-        "formulahendry.code-runner",
-        "ms-vscode.cpptools",
-        "blacketpaircolordlw.bracket-pair-color-dlw",
-        "christian-kohler.path-intellisense",
+        "rust-lang.rust-analyzer",
+        "vadimcn.vscode-lldb",
         "eamodio.gitlens",
         "mosapride.zenkaku",
         "oderwat.indent-rainbow",
         "shardulm94.trailing-spaces",
         "streetsidesoftware.code-spell-checker",
-        "llvm-vs-code-extensions.vscode-clangd",
-        "xaver.clang-format",
         "openai.chatgpt"
       ]
     }
   },
-  // Codex の状態はプロジェクト内に保持し、認証情報はホスト側のものを利用する
   "initializeCommand": ".devcontainer/scripts/initialize.sh",
   "mounts": [
     "source=${localWorkspaceFolder}/.codex-local,target=/home/vscode/.codex,type=bind",
     "source=${localEnv:HOME}/.codex/auth.json,target=/home/vscode/.codex/auth.json,type=bind"
   ],
-  // この設定をしないと、コンテナのデフォルトユーザーがrootとなり不都合が多いので必須。
-  // non-root user などで調べるとより詳しくわかります。
-  "remoteUser": "vscode",
-  // 追加導入する機能の選択
-  "features": {
-    "git": "latest"
-  }
+  "postCreateCommand": "cargo install --locked cargo-equip",
+  "remoteUser": "vscode"
 }

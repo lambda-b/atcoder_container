@@ -3,46 +3,26 @@
   "tasks": [
     {
       "type": "shell",
-      "label": "C/C++: g++ アクティブなファイルのビルド",
-      "command": "/usr/bin/g++-15",
+      "label": "AtCoder: Build and test active problem",
+      "command": "${workspaceFolder}/scripts/rusttest.sh",
       "args": [
-        "-fdiagnostics-color=always",
-        "-g3",
-        "-Wall",
-        "-Wextra",
-        "-DLOCAL",
-        "${file}",
-        "-o",
-        "${fileDirname}/out/${fileBasenameNoExtension}",
-        "-I",
-        "${workspaceFolder}/include",
-        "-std=gnu++23"
+        "${workspaceFolder}",
+        "${file}"
       ],
       "options": {
-        "cwd": "${fileDirname}"
+        "cwd": "${workspaceFolder}"
       },
-      "problemMatcher": [
-        "$gcc"
-      ],
-      "group": "build",
-      "detail": "コンパイラ: /usr/bin/g++-15"
-    },
-    {
-      "type": "shell",
-      "label": "C/C++: AtCoder自動テスト",
       "group": {
         "kind": "build",
         "isDefault": true
       },
-      "command": "${workspaceFolder}/scripts/cptest.sh",
-      "args": [
-        "${workspaceFolder}",
-        "${fileDirname}",
-        "${fileBasenameNoExtension}"
-      ],
       "problemMatcher": [
-        "$gcc"
-      ]
+        "$rustc"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      }
     }
   ]
 }

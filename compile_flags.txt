@@ -1,6 +1,0 @@
--std=gnu++23
--I
-include
--Wall
--Wextra
--DLOCAL

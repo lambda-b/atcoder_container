@@ -1,47 +1,18 @@
 {
-  "terminal.integrated.defaultProfile.linux": "zsh",
-  "[cpp]": {
-    "editor.wordBasedSuggestions": "off",
-    "editor.suggest.insertMode": "replace",
-    "editor.semanticHighlighting.enabled": true,
-    "editor.defaultFormatter": "xaver.clang-format"
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "[rust]": {
+    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+    "editor.formatOnSave": true
   },
-  "files.watcherExclude": {
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/node_modules/*/**": true,
-    "**/.hg/store/**": true,
-    "**/include/*/**": true
-  },
-  "clang-format.executable": "/usr/bin/clang-format-21",
-  "clangd.path": "/usr/bin/clangd-21",
+  "rust-analyzer.cargo.allTargets": true,
+  "rust-analyzer.check.command": "clippy",
   "files.autoSave": "afterDelay",
-  "code-runner.executorMap": {
-    "cpp": "cd $dir && mkdir -p out && g++-15 -std=gnu++23 -Wall -Wextra -DLOCAL -I $workspaceRoot/include $fileName -o out/$fileNameWithoutExt && $dirWithoutTrailingSlash/out/$fileNameWithoutExt"
+  "files.watcherExclude": {
+    "**/target/**": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true
   },
-  "code-runner.runInTerminal": true,
-  "files.associations": {
-    "iostream": "cpp",
-    "cmath": "cpp",
-    "*.tcc": "cpp",
-    "map": "cpp",
-    "ostream": "cpp"
-  },
-  "files.autoGuessEncoding": true,
-  "C_Cpp.errorSquiggles": "disabled",
   "cSpell.words": [
-    "atcoder",
-    "coef",
-    "erathosthenes",
-    "fenwick",
-    "modint",
-    "multiprecision",
-    "pbds",
-    "segtree"
-  ],
-  "cSpell.ignorePaths": [
-    "**/.devcontainer/**",
-    "**/.vscode/**",
-    "**/include/**"
+    "atcoder"
   ]
 }

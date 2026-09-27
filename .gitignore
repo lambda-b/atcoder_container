@@ -1,9 +1,14 @@
-**/out
-test
+/target/
+**/target/
+**/out/
+.env
+.env.*
+!.env.example
+
+# AtCoder full test data can be large and should be managed locally.
+**/testcases/in/
+**/testcases/out/
 debug/problem.txt
-example
-/boost
-*:Zone.Identifier
 
 # Local Codex state and credentials
 /.codex-local/
