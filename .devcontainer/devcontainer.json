@@ -10,7 +10,7 @@
     "ghcr.io/devcontainers/features/git:1": {},
     "ghcr.io/devcontainers/features/rust:1": {
       "version": "1.89.0",
-      "components": "clippy,rustfmt"
+      "components": "clippy,rustfmt,rust-analyzer"
     }
   },
   "customizations": {
