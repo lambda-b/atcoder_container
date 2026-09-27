@@ -28,7 +28,7 @@ fn main() {
             println!("{sum}");
         } else {
             let p = l + size;
-            tree[p] = r + tree[p];
+            tree[p] += r;
             let mut i = p / 2;
             while i > 0 {
                 tree[i] = tree[i * 2] + tree[i * 2 + 1];

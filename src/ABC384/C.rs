@@ -5,10 +5,10 @@ fn main() {
     for mask in 1..32 {
         let mut name = String::new();
         let mut score = 0;
-        for i in 0..5 {
+        for (i, &value) in v.iter().enumerate() {
             if mask >> i & 1 == 1 {
                 name.push((b'A' + i as u8) as char);
-                score += v[i];
+                score += value;
             }
         }
         names.push((score, name));

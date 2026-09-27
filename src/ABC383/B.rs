@@ -1,10 +1,10 @@
 use proconio::input;
 fn main() {
-    input! {h:usize,w:usize,d:i32,grid:[String;h]}
+    input! {h:usize,_w:usize,d:i32,grid:[String;h]}
     let mut open = Vec::new();
-    for i in 0..h {
-        for j in 0..w {
-            if grid[i].as_bytes()[j] == b'.' {
+    for (i, row) in grid.iter().enumerate() {
+        for (j, &cell) in row.as_bytes().iter().enumerate() {
+            if cell == b'.' {
                 open.push((i as i32, j as i32));
             }
         }

@@ -8,4 +8,4 @@ problem="$(basename "$source_file" .rs)"
 bin_name="${contest_dir,,}_${problem,,}"
 bin_name="${bin_name//-/_}"
 
-cargo build --release --bin "$bin_name" --manifest-path "$workspace/Cargo.toml"
+cargo build --release --target-dir "$workspace/out" --bin "$bin_name" --manifest-path "$workspace/Cargo.toml"

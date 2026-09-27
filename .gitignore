@@ -1,6 +1,7 @@
 /target/
 **/target/
 **/out/
+**/test/
 .env
 .env.*
 !.env.example

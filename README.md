@@ -14,7 +14,7 @@ Dev ContainerではAtCoderのRust環境に合わせたRust 1.89.0と、`rustfmt`
 cargo run --release --bin abc372_d
 ```
 
-新しい問題は `src/ABC488/A.rs` のようにコンテスト別ディレクトリにファイルを作成し、通常のRustプログラムを書きます。Rustファイルを開いた状態で `Ctrl+Shift+B` を押すと、その問題をビルドし、AtCoderのサンプルを取得して `oj test` を実行します。取得したサンプルは問題ディレクトリ内の `test/` に保存されます。
+新しい問題は `src/ABC488/A.rs` のようにコンテスト別ディレクトリにファイルを作成し、通常のRustプログラムを書きます。Rustファイルを開いた状態で `Ctrl+Shift+B` を押すと、その問題を `out/` にビルドし、AtCoderのサンプルを取得して `oj test` を実行します。取得したサンプルは問題ディレクトリ内の `test/` に保存されます。どちらもGit管理対象外です。
 
 ## AtCoder Library
 

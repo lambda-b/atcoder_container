@@ -3,9 +3,9 @@ fn main() {
     input! {n:usize,m:usize}
     let mut boxes = vec![Vec::new(); n];
     let mut remaining = vec![0usize; m];
-    for j in 0..m {
+    for (j, remaining_count) in remaining.iter_mut().enumerate() {
         input! {k:usize,items:[usize;k]}
-        remaining[j] = k;
+        *remaining_count = k;
         for x in items {
             boxes[x - 1].push(j);
         }

@@ -21,10 +21,10 @@ fn main() {
         h[v - 1][u - 1] = true;
     }
     let mut cost = vec![vec![0i64; n]; n];
-    for i in 0..n {
-        for j in i + 1..n {
+    for (i, row) in cost.iter_mut().enumerate() {
+        for cell in row.iter_mut().skip(i + 1) {
             input! { x:i64 }
-            cost[i][j] = x;
+            *cell = x;
         }
     }
     let mut p: Vec<_> = (0..n).collect();

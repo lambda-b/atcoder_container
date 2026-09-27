@@ -20,4 +20,4 @@ if [[ ! -d "$test_dir" ]]; then
   oj dl -d "$test_dir" "$url"
 fi
 
-oj test -c "$workspace/target/release/$bin_name" -d "$test_dir"
+oj test -c "$workspace/out/release/$bin_name" -d "$test_dir"

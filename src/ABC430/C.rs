@@ -17,11 +17,11 @@ fn main() {
     let bytes = s.as_bytes();
     let (mut ca, mut cb) = (0, 0);
     let (mut sa, mut sb) = (Segtree::<Min>::new(n), Segtree::<Min>::new(n));
-    for i in 0..n {
-        if bytes[i] == b'a' {
+    for (i, &ch) in bytes.iter().enumerate() {
+        if ch == b'a' {
             ca += 1;
         }
-        if bytes[i] == b'b' {
+        if ch == b'b' {
             cb += 1;
         }
         sa.set(i, ca);
