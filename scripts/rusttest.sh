@@ -8,7 +8,8 @@ problem="$(basename "$source_file" .rs)"
 contest="${contest_dir,,}"
 problem_lower="${problem,,}"
 bin_name="${contest//-/_}_${problem_lower}"
-test_dir="$(dirname "$source_file")/test/$problem"
+output_dir="$(dirname "$source_file")/out"
+test_dir="$output_dir/test/$problem"
 
 "$workspace/scripts/rustbuild.sh" "$workspace" "$source_file"
 
@@ -20,4 +21,4 @@ if [[ ! -d "$test_dir" ]]; then
   oj dl -d "$test_dir" "$url"
 fi
 
-oj test -c "$workspace/out/release/$bin_name" -d "$test_dir"
+oj test -c "$output_dir/$problem" -d "$test_dir"
